@@ -1,5 +1,6 @@
 package com.example.scheduleapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -42,22 +43,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTasks.setAdapter(taskAdapter);
 
-        addTaskButton.setOnClickListener(v -> addNewTask("New Task"));
-        menuTasksButton.setOnClickListener(v -> {
-        });
-        menuAddButton.setOnClickListener(v -> addNewTask("New Task (Bottom Nav)"));
-        menuCalendarButton.setOnClickListener(v -> {
-        });
+        addTaskButton.setOnClickListener(v -> showAddTask());
+
+        menuTasksButton.setOnClickListener(v -> navigateToHomeScreen());
+        menuAddButton.setOnClickListener(v -> showAddTask());
+        menuCalendarButton.setOnClickListener(v -> openCalendar());
 
         updateNoTasksMessage();
     }
 
-    public void updateNoTasksMessage() {
-        if (taskList.isEmpty()) {
-            noTasksMessage.setVisibility(View.VISIBLE);
-        } else {
-            noTasksMessage.setVisibility(View.GONE);
-        }
+    private void showAddTask() {
+        addNewTask("New Task");
     }
 
     private void addNewTask(String taskName) {
@@ -72,5 +68,21 @@ public class MainActivity extends AppCompatActivity {
             taskAdapter.notifyItemRemoved(position);
             updateNoTasksMessage();
         }
+    }
+
+    private void updateNoTasksMessage() {
+        if (taskList.isEmpty()) {
+            noTasksMessage.setVisibility(View.VISIBLE);
+        } else {
+            noTasksMessage.setVisibility(View.GONE);
+        }
+    }
+    private void navigateToHomeScreen() {
+        // Nothing, home page
+    }
+
+    private void openCalendar() {
+        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+        startActivity(intent);
     }
 }
