@@ -1,6 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#82CFEA">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_new_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW TASK"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/assignmentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Assignment Name"
+        android:layout_below="@id/tv_new_task"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Date"
+        android:layout_below="@id/assignmentName"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/dueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date"
+        android:layout_below="@id/startDate"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/numberOfDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of Days"
+        android:layout_below="@id/dueDate"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/timeNeeded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Time Needed"
+        android:layout_below="@id/numberOfDays"
+        android:layout_margin="10dp"/>
+
+</RelativeLayout>
