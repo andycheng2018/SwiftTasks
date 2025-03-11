@@ -9,10 +9,21 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.UUID;
+
 public class NewTaskFragment extends Fragment {
 
     private EditText assignmentName, startDate, dueDate, numberOfDays, timeNeeded;
     private Button saveButton;
+    private static final String ARG_SCHEDULE_ID = "schedule_id";
+
+    public static NewTaskFragment newInstance(UUID scheduleID) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_SCHEDULE_ID, scheduleID);
+        NewTaskFragment fragment = new NewTaskFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
