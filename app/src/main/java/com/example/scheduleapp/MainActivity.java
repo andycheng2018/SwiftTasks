@@ -8,20 +8,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewTasks;
     private TaskAdapter taskAdapter;
-    private List<String> taskList;
-
     private TextView noTasksMessage;
-
     private ImageButton addTaskButton;
     private ImageButton menuTasksButton;
     private ImageButton menuAddButton;
     private ImageButton menuCalendarButton;
+    private List<Task> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
-
         noTasksMessage = findViewById(R.id.noTasksMessage);
 
         addTaskButton = findViewById(R.id.addTaskButton);
@@ -37,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         menuAddButton = findViewById(R.id.menu_add);
         menuCalendarButton = findViewById(R.id.menu_calendar);
 
-        taskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(taskList, this);
+        taskList = TaskLab.get(this).getTasks();  // Assuming TaskLab is managing your tasks
 
+        taskAdapter = new TaskAdapter(taskList, this);
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTasks.setAdapter(taskAdapter);
 
@@ -53,12 +49,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAddTask() {
-        addNewTask("New Task");
+        addNewTask("New Task", "2025-03-10", "2025-03-15", 5, 3, false);
     }
 
-    private void addNewTask(String taskName) {
-        taskList.add(taskName);
-        taskAdapter.notifyItemInserted(taskList.size() - 1);
+    private void addNewTask(String assignmentName, String startDate, String dueDate, int numberOfDays, int timeNeeded, boolean isCompleted) {
+        Task newTask = new Task(assignmentName, startDate, dueDate, numberOfDays, timeNeeded, isCompleted);
+        taskList.add(newTask);
+        taskAdapter.notifyItemInserted(taskList.size() - 1);  // Notify adapter of item insertion
         updateNoTasksMessage();
     }
 
@@ -77,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
             noTasksMessage.setVisibility(View.GONE);
         }
     }
+
     private void navigateToHomeScreen() {
-        // Nothing, home page
+        // Home screen logic
     }
 
     private void openCalendar() {
-        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+        Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
 }
