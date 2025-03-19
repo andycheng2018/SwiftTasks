@@ -41,33 +41,6 @@
         android:orientation="horizontal"
         android:padding="8dp"
         android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/menu_tasks"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#1E7ECB"
-            android:src="@drawable/home"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/menu_add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#1E7ECB"
-            android:src="@drawable/add"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/menu_calendar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#1E7ECB"
-            android:src="@drawable/calendar"
-            app:tint="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>

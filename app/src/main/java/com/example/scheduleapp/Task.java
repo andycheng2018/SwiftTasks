@@ -1,40 +1,82 @@
 package com.example.scheduleapp;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.UUID;
+
 public class Task {
-
-
-    private String assignmentName;
-    private String startDate;
-    private String dueDate;
-    private int numberOfDays;
+    private UUID mId;
+    private String assignmentName = "New Task";
+    private Calendar startDate;
+    private Calendar dueDate;
     private int timeNeeded;
     private boolean isCompleted;
+    private boolean taskChanged;
 
-    public Task(String assignmentName, String startDate, String dueDate, int numberOfDays, int timeNeeded, boolean isCompleted) {
-        this.assignmentName = assignmentName;
-        this.startDate = startDate;
-        this.dueDate = dueDate;
-        this.numberOfDays = numberOfDays;
-        this.timeNeeded = timeNeeded;
-        this.isCompleted = isCompleted;
+    public Task() {
+        this(UUID.randomUUID());
     }
 
+    public Task(UUID id) {
+        mId = id;
+        startDate = (GregorianCalendar) Calendar.getInstance();
+        dueDate = (GregorianCalendar) Calendar.getInstance();
+    }
+
+    public UUID getId() {
+        return mId;
+    }
+
+    public String getStartTimeString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String finalStartDate = "Start Date: " + dateFormat.format(getStartDate().getTime()) + " Start Time: " + timeFormat.format(getStartDate().getTime());
+        return finalStartDate;
+    }
+    public String getDueTimeString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String finalDueDate = "Due Date: " + dateFormat.format(getDueDate().getTime()) + " Due Time: " + timeFormat.format(getDueDate().getTime());
+        return finalDueDate;
+    }
 
     public String getAssignmentName() { return assignmentName; }
     public void setAssignmentName(String assignmentName) { this.assignmentName = assignmentName; }
 
-    public String getStartDate() { return startDate; }
-    public void setStartDate(String startDate) { this.startDate = startDate; }
+    public Calendar getStartDate() {
+        return startDate;
+    }
+    public void setStartDate(Calendar startDate) {
+        this.startDate.set(Calendar.YEAR, startDate.get(Calendar.YEAR));
+        this.startDate.set(Calendar.MONTH, startDate.get(Calendar.MONTH));
+        this.startDate.set(Calendar.DAY_OF_MONTH, startDate.get(Calendar.DAY_OF_MONTH));
+    }
 
-    public String getDueDate() { return dueDate; }
-    public void setDueDate(String dueDate) { this.dueDate = dueDate; }
+    public Calendar getDueDate() {
+        return dueDate;
+    }
+    public void setDueDate(Calendar dueDate) {
+        this.dueDate.set(Calendar.YEAR, dueDate.get(Calendar.YEAR));
+        this.dueDate.set(Calendar.MONTH, dueDate.get(Calendar.MONTH));
+        this.dueDate.set(Calendar.DAY_OF_MONTH, dueDate.get(Calendar.DAY_OF_MONTH));
+    }
 
-    public int getNumberOfDays() { return numberOfDays; }
-    public void setNumberOfDays(int numberOfDays) { this.numberOfDays = numberOfDays; }
+    public void setDueDateTime(Calendar dueDate) {
+        this.dueDate.set(Calendar.HOUR, dueDate.get(Calendar.HOUR));
+        this.dueDate.set(Calendar.MINUTE, dueDate.get(Calendar.MINUTE));
+        this.dueDate.set(Calendar.SECOND, dueDate.get(Calendar.SECOND));
+        this.dueDate.set(Calendar.MILLISECOND, dueDate.get(Calendar.MILLISECOND));
+    }
 
     public int getTimeNeeded() { return timeNeeded; }
     public void setTimeNeeded(int timeNeeded) { this.timeNeeded = timeNeeded; }
 
     public boolean isCompleted() { return isCompleted; }
-    public void setCompleted(boolean completed) { isCompleted = completed; }
+    public void setCompleted(boolean isCompleted) { this.isCompleted = isCompleted; }
+
+    public void setTaskChanged(boolean taskChanged) {
+        this.taskChanged = taskChanged;
+    }
 }

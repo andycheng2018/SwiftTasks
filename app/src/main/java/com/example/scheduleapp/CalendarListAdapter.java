@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class TaskListAdapter extends ArrayAdapter<String> {
+public class CalendarListAdapter extends ArrayAdapter<String> {
 
-    public TaskListAdapter(Context context, List<String> tasks) {
+    public CalendarListAdapter(Context context, List<String> tasks) {
         super(context, android.R.layout.simple_list_item_1, tasks);
     }
 

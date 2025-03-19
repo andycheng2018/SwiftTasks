@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Schedule App</string>
+    <string name="app_name">Swift Tasks</string>
+    <string name="task_title_hint">Enter an assignment name.</string>
+    <string name="task_title_label">Assignment Name</string>
+    <string name="task_details_label">Details</string>
+    <string name="date_picker_title">Date of task:</string>
+    <string name="time_picker_title">Select Due Date Time</string>
+    <string name="task_date_hint">Enter a date for the task.</string>
+    <string name="task_time_hint">Enter the amount of time needed for the task.</string>
+    <string name="new_task">New Task</string>
+    <string name="task_crime">Delete Task</string>
 </resources>

@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/tv_task"
+        android:id="@+id/tv_task_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CLASS-TASK 1"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GET READY TO SPEND X MINUTES ON -- TODAY!"
-        android:layout_below="@id/tv_task"
+        android:layout_below="@id/tv_task_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"/>
 </RelativeLayout>

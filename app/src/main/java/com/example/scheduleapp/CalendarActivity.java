@@ -2,22 +2,21 @@ package com.example.scheduleapp;
 
 import android.os.Bundle;
 import android.widget.CalendarView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
     private CalendarView calendarView;
     private ListView taskListView;
     private TextView titleTextView;
-    private ImageButton backButton;
+    private List<Task> mTasks;
 
     private ArrayList<String> dateList;
     private ArrayList<ArrayList<String>> taskLists;
@@ -29,54 +28,43 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView = findViewById(R.id.calendarView);
         taskListView = findViewById(R.id.taskListView);
-        backButton = findViewById(R.id.menu_tasks);
         titleTextView = findViewById(R.id.titleTextView);
 
         dateList = new ArrayList<>();
         taskLists = new ArrayList<>();
+
+        mTasks = TaskLab.get(this).getTasks();
+        loadTasks();
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             String dateKey = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
             String title = "Tasks for " + getMonthName(month) + " " + dayOfMonth;
             updateTitleAndTasks(title, dateKey);
         });
-
-        backButton.setOnClickListener(v -> {
-            finish();
-        });
-
-        //THIS IS A PLACEHOLDER FOR THE ACTUAL TASK ASSIGNMENTS
-        String startDate = "2025-03-01";
-        String dueDate = "2025-03-07";
-        String assignmentName = "CS Homework";
-        int numDays = 7;
-        int timeNeeded = 14;
-
-        loadTasks(assignmentName, startDate, dueDate, numDays, timeNeeded);
     }
 
-    private void loadTasks(String assignmentName, String startDate, String dueDate, int numDays, int timeNeeded) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date start = sdf.parse(startDate);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(start);
+    private void loadTasks() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        for (Task task : mTasks) {
+            Calendar startDate = task.getStartDate();
+            Calendar dueDate = task.getDueDate();
+            Calendar tempDate = (Calendar) startDate.clone();
 
-            int timePerDay = timeNeeded / numDays;
-
-            for (int i = 0; i < numDays; i++) {
-                String date = sdf.format(calendar.getTime());
-
+            while (!tempDate.after(dueDate)) {
+                String date = sdf.format(tempDate.getTime());
                 ArrayList<String> tasksForDay = new ArrayList<>();
-                tasksForDay.add(assignmentName + " - Study for " + timePerDay + " hours");
+                tasksForDay.add(task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " hours");
 
-                dateList.add(date);
-                taskLists.add(tasksForDay);
+                int index = dateList.indexOf(date);
+                if (index != -1) {
+                    taskLists.get(index).addAll(tasksForDay);
+                } else {
+                    dateList.add(date);
+                    taskLists.add(tasksForDay);
+                }
 
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                tempDate.add(Calendar.DAY_OF_MONTH, 1);
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
 
@@ -89,8 +77,7 @@ public class CalendarActivity extends AppCompatActivity {
         if (index != -1) {
             taskList = taskLists.get(index);
         }
-
-        taskListView.setAdapter(new TaskListAdapter(this, taskList));
+        taskListView.setAdapter(new CalendarListAdapter(this, taskList));
     }
 
     private String getMonthName(int month) {

@@ -10,18 +10,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ScheduleApp"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".TaskListActivity"
+            android:parentActivityName=".TaskListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarActivity" />
+        <activity
+            android:name=".TaskPagerActivity"
+            android:parentActivityName=".TaskListActivity">
+        </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:parentActivityName=".CalendarActivity">
+        </activity>
+        <activity
+            android:name=".NewTaskActivity"
+            android:parentActivityName=".NewTaskActivity">
+        </activity>
     </application>
 
 </manifest>
