@@ -102,13 +102,18 @@ public class TaskFragment extends Fragment {
         });
 
         timeNeeded = v.findViewById(R.id.task_timeNeeded);
+        if(task.getTimeNeeded() != 0)
+            timeNeeded.setText(Integer.toString(task.getTimeNeeded()));
         timeNeeded.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                task.setTimeNeeded(Integer.parseInt(s.toString()));
+                if (s.toString().equals(""))
+                    task.setTimeNeeded(0);
+                else
+                    task.setTimeNeeded(Integer.parseInt(s.toString()));
                 task.setTaskChanged(true);
             }
 
