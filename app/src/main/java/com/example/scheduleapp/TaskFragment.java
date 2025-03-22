@@ -2,6 +2,7 @@ package com.example.scheduleapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +39,15 @@ public class TaskFragment extends Fragment {
     private EditText timeNeeded;
     private CheckBox isCompleted;
 
+    private TextView countdown_text;
+    private Button countdown_button;
+
+    private CountDownTimer countDownTimer;
+    private Long timeLeftInMilliseconds = 20000L;
+
+    private boolean timeRunning;
+
+
     public static TaskFragment newInstance(UUID taskID) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_TASK_ID, taskID);
@@ -50,6 +61,8 @@ public class TaskFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID taskId = (UUID) getArguments().getSerializable(ARG_TASK_ID);
         task = TaskLab.get(getActivity()).getTask(taskId);
+
+
     }
 
     @Override
@@ -63,6 +76,17 @@ public class TaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_task, container, false);
+
+        countdown_text = v.findViewById(R.id.countdownText);
+
+        countdown_button = v.findViewById(R.id.startPauseButton);
+
+        countdown_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startStop();
+            }
+        });
 
         assignmentName = v.findViewById(R.id.task_title);
         assignmentName.setText(task.getAssignmentName());
@@ -101,6 +125,11 @@ public class TaskFragment extends Fragment {
             dialog.show(getChildFragmentManager(), DIALOG_TIME);
         });
 
+
+
+        updateTimer();
+
+
         timeNeeded = v.findViewById(R.id.task_timeNeeded);
         timeNeeded.addTextChangedListener(new TextWatcher() {
             @Override
@@ -108,9 +137,14 @@ public class TaskFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                task.setTimeNeeded(Integer.parseInt(s.toString()));
+                if(s.toString().equals(""))
+                    task.setTimeNeeded(0);
+                else
+                    task.setTimeNeeded(Integer.parseInt(s.toString()));
                 task.setTaskChanged(true);
             }
+
+
 
             @Override
             public void afterTextChanged(Editable s) {}
@@ -121,6 +155,60 @@ public class TaskFragment extends Fragment {
         isCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> task.setCompleted(isChecked));
 
         return v;
+    }
+
+    public void startStop(){
+        if(timeRunning){
+            stopTimer();
+        }else{
+            startTimer();
+        }
+    }
+
+    public void startTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+                // Handle timer finish (optional)
+                timeRunning = false;
+                countdown_button.setText("Start");
+            }
+        }; // Correctly assign the CountDownTimer instance
+
+        countDownTimer.start(); // Start the timer
+
+        countdown_button.setText("Pause");
+        timeRunning = true;
+    }
+
+    public void stopTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        countdown_button.setText("Start");
+        timeRunning = false;
+    }
+
+    public void updateTimer(){
+        int minutes = timeLeftInMilliseconds.intValue()/60000;
+        int seconds = timeLeftInMilliseconds.intValue()%60000 / 1000;
+
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+
+        if(seconds<10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        countdown_text.setText(timeLeftText);
+
+
     }
 
     @Override

@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:background="#82CFEA">
 
+
     <TextView
         android:id="@+id/tv_schedule"
         android:layout_width="wrap_content"
@@ -12,6 +13,7 @@
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
+
 
     <TextView
         android:id="@+id/tv_task_title"
@@ -23,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
+
     <TextView
         android:id="@+id/tv_task_description"
         android:layout_width="wrap_content"
@@ -31,4 +34,39 @@
         android:layout_below="@id/tv_task_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"/>
+
+
+    <TextView
+        android:id="@+id/countdownText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:20"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:layout_below="@id/tv_task_description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+
+    <Button
+        android:id="@+id/startPauseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_below="@id/countdownText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_below="@id/startPauseButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+
 </RelativeLayout>
+
