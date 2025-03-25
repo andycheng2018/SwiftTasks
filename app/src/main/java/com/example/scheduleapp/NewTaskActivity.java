@@ -25,10 +25,12 @@ public class NewTaskActivity extends AppCompatActivity {
     private TextView countdown_text;
     private Button countdown_button;
     private Button reset_button;
+    private Button complete_button;
     private CountDownTimer countDownTimer;
     private Long timeLeftInMilliseconds = 10000L;
     private Long timeLeftInMillisecondsStart;
     private boolean timeRunning;
+    private Task mTask;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,8 +48,8 @@ public class NewTaskActivity extends AppCompatActivity {
             if (mTasks.get(i).getId().equals(crimeId)) {
                 taskTitle.setText(mTasks.get(i).getAssignmentName());
                 taskDescription.setText("Get ready to spend " + mTasks.get(i).getTimeNeeded() + " mins today!");
-
                 timeLeftInMilliseconds = mTasks.get(i).getTimeNeeded() * 60000L;
+                mTask = mTasks.get(i);
                 break;
             }
         }
@@ -55,26 +57,32 @@ public class NewTaskActivity extends AppCompatActivity {
         countdown_text = findViewById(R.id.countdownText);
         countdown_button = findViewById(R.id.startPauseButton);
         reset_button = findViewById(R.id.resetButton);
+        complete_button = findViewById(R.id.completeTaskButton);
 
-        countdown_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (timeRunning)
-                    stopTimer();
-                else
-                    startTimer();
-            }
+        // Initially hide the complete button
+        complete_button.setVisibility(View.GONE);
+
+        countdown_button.setOnClickListener(view -> {
+            if (timeRunning)
+                stopTimer();
+            else
+                startTimer();
         });
-        reset_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetTimer();
+
+        reset_button.setOnClickListener(view -> resetTimer());
+
+        complete_button.setOnClickListener(view -> {
+            if (mTask != null) {
+                mTask.setCompleted(true);
+                TaskLab.get(NewTaskActivity.this).updateTask(mTask);
+                finish();
             }
         });
 
         timeLeftInMillisecondsStart = timeLeftInMilliseconds;
         updateTimer();
     }
+
 
     public void startTimer() {
         countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
@@ -88,12 +96,15 @@ public class NewTaskActivity extends AppCompatActivity {
             public void onFinish() {
                 timeRunning = false;
                 countdown_button.setText("Start");
+
+                complete_button.setVisibility(View.VISIBLE);
             }
         }.start();
 
         countdown_button.setText("Pause");
         timeRunning = true;
     }
+
 
     public void stopTimer() {
         countDownTimer.cancel();
@@ -129,5 +140,6 @@ public class NewTaskActivity extends AppCompatActivity {
         stopTimer();
         timeLeftInMilliseconds = timeLeftInMillisecondsStart;
         updateTimer();
+        complete_button.setVisibility(View.GONE);
     }
 }

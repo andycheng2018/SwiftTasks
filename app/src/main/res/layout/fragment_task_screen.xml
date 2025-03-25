@@ -67,6 +67,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
+    <Button
+        android:id="@+id/completeTaskButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="Complete Task"
+        android:textSize="18sp"
+        android:background="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/resetButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>
 
