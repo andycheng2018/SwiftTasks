@@ -105,6 +105,21 @@ public class TaskListFragment extends Fragment {
             mDueDateTextView.setText(mTask.getDueTimeString());
             mStartButton.setOnClickListener(v -> startTask());
             mSolvedCheckBox.setChecked(task.isCompleted());
+
+            updateStrikeThrough(task.isCompleted());
+
+            mSolvedCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                mTask.setCompleted(isChecked);
+                updateStrikeThrough(isChecked);
+            });
+        }
+
+        private void updateStrikeThrough(boolean isCompleted) {
+            int flags = isCompleted ? android.graphics.Paint.STRIKE_THRU_TEXT_FLAG : 0;
+            mTitleTextView.setPaintFlags(flags);
+            mStartDateTextView.setPaintFlags(flags);
+            mDueDateTextView.setPaintFlags(flags);
+            mDueDateTextView.setPaintFlags(flags);
         }
 
         @Override
