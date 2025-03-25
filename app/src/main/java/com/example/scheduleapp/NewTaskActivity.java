@@ -24,12 +24,14 @@ public class NewTaskActivity extends AppCompatActivity {
 
     private TextView countdown_text;
     private Button countdown_button;
+    private Button reset_button;
     private CountDownTimer countDownTimer;
     private Long timeLeftInMilliseconds = 10000L;
+    private Long timeLeftInMillisecondsStart;
     private boolean timeRunning;
 
-
     @SuppressLint("MissingInflatedId")
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_task_screen);
@@ -44,12 +46,15 @@ public class NewTaskActivity extends AppCompatActivity {
             if (mTasks.get(i).getId().equals(crimeId)) {
                 taskTitle.setText(mTasks.get(i).getAssignmentName());
                 taskDescription.setText("Get ready to spend " + mTasks.get(i).getTimeNeeded() + " mins today!");
+
+                timeLeftInMilliseconds = mTasks.get(i).getTimeNeeded() * 60000L;
                 break;
             }
         }
 
         countdown_text = findViewById(R.id.countdownText);
         countdown_button = findViewById(R.id.startPauseButton);
+        reset_button = findViewById(R.id.resetButton);
 
         countdown_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +65,14 @@ public class NewTaskActivity extends AppCompatActivity {
                     startTimer();
             }
         });
+        reset_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetTimer();
+            }
+        });
+
+        timeLeftInMillisecondsStart = timeLeftInMilliseconds;
         updateTimer();
     }
 
@@ -88,17 +101,33 @@ public class NewTaskActivity extends AppCompatActivity {
         timeRunning = false;
     }
 
-    public void updateTimer(){
-        int minutes = timeLeftInMilliseconds.intValue() / 60000;
-        int seconds = timeLeftInMilliseconds.intValue() % 60000 / 1000;
+    public void updateTimer() {
+        int hours = timeLeftInMilliseconds.intValue() / 3600000;
+        int minutes = (timeLeftInMilliseconds.intValue() % 3600000) / 60000;
+        int seconds = (timeLeftInMilliseconds.intValue() % 60000) / 1000;
 
-        String timeLeftText;
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
+        String timeLeftText = "";
 
-        if(seconds < 10) timeLeftText += "0";
+        if (hours > 0) {
+            timeLeftText += hours + ":";
+        }
+
+        if (minutes < 10 && hours > 0) {
+            timeLeftText += "0";
+        }
+        timeLeftText += minutes + ":";
+
+        if (seconds < 10) {
+            timeLeftText += "0";
+        }
         timeLeftText += seconds;
 
         countdown_text.setText(timeLeftText);
+    }
+
+    public void resetTimer() {
+        stopTimer();
+        timeLeftInMilliseconds = timeLeftInMillisecondsStart;
+        updateTimer();
     }
 }

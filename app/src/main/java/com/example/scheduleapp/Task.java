@@ -15,15 +15,6 @@ public class Task {
     private boolean isCompleted;
     private boolean taskChanged;
 
-    private long remainingTimeMillis;  // <-- Add this
-    private boolean timerRunning;      // <-- Add this
-
-    // Add these at the bottom of your existing getters/setters
-    public long getRemainingTimeMillis() { return remainingTimeMillis; }
-    public void setRemainingTimeMillis(long remainingTimeMillis) { this.remainingTimeMillis = remainingTimeMillis; }
-    public boolean isTimerRunning() { return timerRunning; }
-    public void setTimerRunning(boolean timerRunning) { this.timerRunning = timerRunning; }
-
     private long remainingTimeMillis;
     private boolean timerRunning;
 
