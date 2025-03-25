@@ -24,6 +24,14 @@ public class Task {
     public boolean isTimerRunning() { return timerRunning; }
     public void setTimerRunning(boolean timerRunning) { this.timerRunning = timerRunning; }
 
+    private long remainingTimeMillis;
+    private boolean timerRunning;
+
+    public long getRemainingTimeMillis() { return remainingTimeMillis; }
+    public void setRemainingTimeMillis(long remainingTimeMillis) { this.remainingTimeMillis = remainingTimeMillis; }
+    public boolean isTimerRunning() { return timerRunning; }
+    public void setTimerRunning(boolean timerRunning) { this.timerRunning = timerRunning; }
+
     public Task() {
         this(UUID.randomUUID());
     }

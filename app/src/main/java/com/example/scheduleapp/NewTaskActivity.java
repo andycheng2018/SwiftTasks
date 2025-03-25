@@ -2,9 +2,11 @@ package com.example.scheduleapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,12 @@ public class NewTaskActivity extends AppCompatActivity {
     private List<Task> mTasks;
     private TextView taskTitle;
     private TextView taskDescription;
+
+    private TextView countdown_text;
+    private Button countdown_button;
+    private CountDownTimer countDownTimer;
+    private Long timeLeftInMilliseconds = 10000L;
+    private boolean timeRunning;
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,5 +47,58 @@ public class NewTaskActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        countdown_text = findViewById(R.id.countdownText);
+        countdown_button = findViewById(R.id.startPauseButton);
+
+        countdown_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (timeRunning)
+                    stopTimer();
+                else
+                    startTimer();
+            }
+        });
+        updateTimer();
+    }
+
+    public void startTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+                timeRunning = false;
+                countdown_button.setText("Start");
+            }
+        }.start();
+
+        countdown_button.setText("Pause");
+        timeRunning = true;
+    }
+
+    public void stopTimer() {
+        countDownTimer.cancel();
+        countdown_button.setText("Start");
+        timeRunning = false;
+    }
+
+    public void updateTimer(){
+        int minutes = timeLeftInMilliseconds.intValue() / 60000;
+        int seconds = timeLeftInMilliseconds.intValue() % 60000 / 1000;
+
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+
+        if(seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        countdown_text.setText(timeLeftText);
     }
 }
