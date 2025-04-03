@@ -1,6 +1,7 @@
 package com.example.scheduleapp;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -59,7 +60,6 @@ public class NewTaskActivity extends AppCompatActivity {
         reset_button = findViewById(R.id.resetButton);
         complete_button = findViewById(R.id.completeTaskButton);
 
-        // Initially hide the complete button
         complete_button.setVisibility(View.GONE);
 
         countdown_button.setOnClickListener(view -> {
@@ -96,6 +96,9 @@ public class NewTaskActivity extends AppCompatActivity {
             public void onFinish() {
                 timeRunning = false;
                 countdown_button.setText("Start");
+
+                MediaPlayer mediaPlayer = MediaPlayer.create(NewTaskActivity.this, R.raw.alarm);
+                mediaPlayer.start();
 
                 complete_button.setVisibility(View.VISIBLE);
             }

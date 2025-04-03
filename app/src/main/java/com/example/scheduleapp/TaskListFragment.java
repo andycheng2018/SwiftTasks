@@ -2,6 +2,7 @@ package com.example.scheduleapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -108,10 +110,22 @@ public class TaskListFragment extends Fragment {
 
             updateStrikeThrough(task.isCompleted());
 
+            updateBackgroundColor(task.isCompleted());
+
             mSolvedCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 mTask.setCompleted(isChecked);
                 updateStrikeThrough(isChecked);
+                updateBackgroundColor(isChecked);
             });
+        }
+
+        private void updateBackgroundColor(boolean isChecked) {
+            ConstraintLayout layout = itemView.findViewById(R.id.linearLayout);
+            if (isChecked) {
+                layout.setBackgroundColor(Color.parseColor("#77C7C1"));
+            } else {
+                layout.setBackgroundColor(Color.parseColor("#FFAAAA"));
+            }
         }
 
         private void updateStrikeThrough(boolean isCompleted) {

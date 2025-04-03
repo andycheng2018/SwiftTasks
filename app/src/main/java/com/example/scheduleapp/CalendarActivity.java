@@ -53,7 +53,7 @@ public class CalendarActivity extends AppCompatActivity {
             while (!tempDate.after(dueDate)) {
                 String date = sdf.format(tempDate.getTime());
                 ArrayList<String> tasksForDay = new ArrayList<>();
-                tasksForDay.add(task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " hours");
+                tasksForDay.add(task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " minutes");
 
                 int index = dateList.indexOf(date);
                 if (index != -1) {
