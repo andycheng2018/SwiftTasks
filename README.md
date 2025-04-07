@@ -23,11 +23,11 @@ The app is not out yet, but it will be available soon on the Google Play Store.
 <p align="center">
   <img src="screen1.png" alt="Swift Tasks UI 1" width="48%" />
   <img src="screen2.png" alt="Swift Tasks UI 2" width="48%" />
-  <img src="screen3.png" alt="Swift Tasks UI 2" width="48%" />
 </p>
 
 <p align="center">
-  <img src=screen4.png" alt="Swift Tasks Calendar View" width="48%" />
+  <img src="screen3.png" alt="Swift Tasks UI 3" width="48%" />
+  <img src="screen4.png" alt="Swift Tasks UI 4" width="48%" />
 </p>
 
 ---
