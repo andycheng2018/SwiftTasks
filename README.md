@@ -36,7 +36,7 @@ The app is not out yet, but it will be available soon on the Google Play Store.
 
 Watch the demo video to get a sense of how Swift Tasks works and its key features:
 
-[![Watch the demo](https://img.youtube.com/vi/DdZKDHxc2vs/0.jpg)](https://www.youtube.com/watch?v=DdZKDHxc2vs)
+[![Watch the demo](https://img.youtube.com/vi/D27bZh9T6iA/0.jpg)](https://www.youtube.com/shorts/D27bZh9T6iA)
 
 ---
 
