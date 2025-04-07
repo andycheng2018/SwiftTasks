@@ -21,13 +21,13 @@ The app is not out yet, but it will be available soon on the Google Play Store.
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screen1.png" alt="Swift Tasks UI 1" width="48%" />
-  <img src="screen2.png" alt="Swift Tasks UI 2" width="48%" />
+  <img src="screenshot1.png" alt="Swift Tasks UI 1" width="48%" />
+  <img src="screenshot2.png" alt="Swift Tasks UI 2" width="48%" />
 </p>
 
 <p align="center">
-  <img src="screen3.png" alt="Swift Tasks UI 3" width="48%" />
-  <img src="screen4.png" alt="Swift Tasks UI 4" width="48%" />
+  <img src="screenshot3.png" alt="Swift Tasks UI 3" width="48%" />
+  <img src="screenshot4.png" alt="Swift Tasks UI 4" width="48%" />
 </p>
 
 ---
