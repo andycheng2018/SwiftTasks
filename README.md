@@ -18,6 +18,14 @@ The app is not out yet, but it will be available soon on the Google Play Store.
 
 ---
 
+## 📺 Demo Video
+
+Watch the demo video to get a sense of how Swift Tasks works and its key features:
+
+[![Watch the demo](https://img.youtube.com/vi/D27bZh9T6iA/0.jpg)](https://www.youtube.com/shorts/D27bZh9T6iA)
+
+---
+
 ## 📸 Screenshots
 
 <p align="center">
@@ -29,14 +37,6 @@ The app is not out yet, but it will be available soon on the Google Play Store.
   <img src="screenshot3.png" alt="Swift Tasks UI 3" width="48%" />
   <img src="screenshot4.png" alt="Swift Tasks UI 4" width="48%" />
 </p>
-
----
-
-## 📺 Demo Video
-
-Watch the demo video to get a sense of how Swift Tasks works and its key features:
-
-[![Watch the demo](https://img.youtube.com/vi/D27bZh9T6iA/0.jpg)](https://www.youtube.com/shorts/D27bZh9T6iA)
 
 ---
 
