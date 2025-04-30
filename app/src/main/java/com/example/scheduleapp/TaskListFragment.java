@@ -88,6 +88,7 @@ public class TaskListFragment extends Fragment {
         private TextView mDueDateTextView;
         private Button mStartButton;
         private CheckBox mSolvedCheckBox;
+        private CheckBox mAlternating;
         private Task mTask;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -98,6 +99,7 @@ public class TaskListFragment extends Fragment {
             mDueDateTextView = itemView.findViewById(R.id.task_due_date);
             mStartButton = itemView.findViewById(R.id.start_task);
             mSolvedCheckBox = itemView.findViewById(R.id.is_completed);
+            mAlternating = itemView.findViewById(R.id.is_alternating);
         }
 
         public void bind(Task task) {
@@ -107,7 +109,9 @@ public class TaskListFragment extends Fragment {
             mDueDateTextView.setText(mTask.getDueTimeString());
             mStartButton.setOnClickListener(v -> startTask());
             mSolvedCheckBox.setChecked(task.isCompleted());
-
+            if (mAlternating != null) {
+                mAlternating.setChecked(task.isAlternating());
+            }
             updateStrikeThrough(task.isCompleted());
 
             updateBackgroundColor(task.isCompleted());
@@ -117,6 +121,12 @@ public class TaskListFragment extends Fragment {
                 updateStrikeThrough(isChecked);
                 updateBackgroundColor(isChecked);
             });
+
+            mAlternating.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                mTask.setAlternating(isChecked);
+            });
+
+
         }
 
         private void updateBackgroundColor(boolean isChecked) {
