@@ -11,7 +11,6 @@ public class TaskDbSchema {
             public static final String DUE_DATE = "dueDate";
             public static final String TIME_NEEDED = "timeNeeded";
             public static final String IS_COMPLETED = "isCompleted";
-            public static final String IS_ALTERNATING = "isAlternating";
         }
     }
 }

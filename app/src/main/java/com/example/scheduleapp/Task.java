@@ -14,7 +14,6 @@ public class Task {
     private int timeNeeded;
     private boolean isCompleted;
     private boolean taskChanged;
-    private boolean isAlternating;
 
     private long remainingTimeMillis;
     private boolean timerRunning;
@@ -84,9 +83,6 @@ public class Task {
 
     public boolean isCompleted() { return isCompleted; }
     public void setCompleted(boolean isCompleted) { this.isCompleted = isCompleted; }
-
-    public boolean isAlternating(){ return isAlternating;}
-    public void setAlternating(boolean isAlternating){ this.isAlternating = isAlternating;}
 
     public void setTaskChanged(boolean taskChanged) {
         this.taskChanged = taskChanged;

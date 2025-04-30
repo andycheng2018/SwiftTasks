@@ -96,8 +96,6 @@ public class TaskLab {
         values.put(TaskDbSchema.TaskTable.Cols.DUE_DATE, task.getDueDate().getTimeInMillis());
         values.put(TaskDbSchema.TaskTable.Cols.TIME_NEEDED, task.getTimeNeeded());
         values.put(TaskDbSchema.TaskTable.Cols.IS_COMPLETED, task.isCompleted() ? 1 : 0);
-        values.put(TaskDbSchema.TaskTable.Cols.IS_ALTERNATING, task.isAlternating() ? 1 : 0);
-
 
         return values;
     }

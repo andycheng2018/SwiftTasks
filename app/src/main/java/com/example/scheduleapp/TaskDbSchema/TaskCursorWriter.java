@@ -20,13 +20,11 @@ public class TaskCursorWriter extends CursorWrapper {
         long dueDate = getLong(getColumnIndex(TaskDbSchema.TaskTable.Cols.DUE_DATE));
         int timeNeeded = getInt(getColumnIndex(TaskDbSchema.TaskTable.Cols.TIME_NEEDED));
         int isCompleted= getInt(getColumnIndex(TaskDbSchema.TaskTable.Cols.IS_COMPLETED));
-        int isAlternating= getInt(getColumnIndex(TaskDbSchema.TaskTable.Cols.IS_ALTERNATING));
 
         Task task = new Task(UUID.fromString(uuidString));
         task.setAssignmentName(assignmentName);
         task.setTimeNeeded(timeNeeded);
         task.setCompleted(isCompleted != 0);
-        task.setAlternating(isAlternating != 0);
 
         GregorianCalendar startCalendar = new GregorianCalendar();
         startCalendar.setTimeInMillis(startDate);

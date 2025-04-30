@@ -14,15 +14,8 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TaskDbSchema.TaskTable.NAME + "(" +
-                " _id integer primary key autoincrement, " +
-                TaskDbSchema.TaskTable.Cols.UUID + ", " +
-                TaskDbSchema.TaskTable.Cols.ASSIGNMENT_NAME + ", " +
-                TaskDbSchema.TaskTable.Cols.START_DATE + ", " +
-                TaskDbSchema.TaskTable.Cols.DUE_DATE + ", " +
-                TaskDbSchema.TaskTable.Cols.TIME_NEEDED + ", " +
-                TaskDbSchema.TaskTable.Cols.IS_COMPLETED + ", " +
-                TaskDbSchema.TaskTable.Cols.IS_ALTERNATING + ")");    }
+        db.execSQL("create table " + TaskDbSchema.TaskTable.NAME + "(" + " _id integer primary key autoincrement, " + TaskDbSchema.TaskTable.Cols.UUID + ", " + TaskDbSchema.TaskTable.Cols.ASSIGNMENT_NAME + ", " + TaskDbSchema.TaskTable.Cols.START_DATE + ", " + TaskDbSchema.TaskTable.Cols.DUE_DATE + ", " + TaskDbSchema.TaskTable.Cols.TIME_NEEDED + ", " + TaskDbSchema.TaskTable.Cols.IS_COMPLETED + ")");
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }

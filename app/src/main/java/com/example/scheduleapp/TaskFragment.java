@@ -38,7 +38,6 @@ public class TaskFragment extends Fragment {
     private Button dueTimeButton;
     private EditText timeNeeded;
     private CheckBox isCompleted;
-    private CheckBox isAlternating;
 
     public static TaskFragment newInstance(UUID taskID) {
         Bundle args = new Bundle();
@@ -128,9 +127,6 @@ public class TaskFragment extends Fragment {
         isCompleted.setChecked(task.isCompleted());
         isCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> task.setCompleted(isChecked));
 
-        isAlternating = v.findViewById(R.id.is_alternating);
-        isAlternating.setChecked(task.isAlternating());
-        isAlternating.setOnCheckedChangeListener((buttonView, isChecked) -> task.setAlternating(isChecked));
         return v;
     }
 
