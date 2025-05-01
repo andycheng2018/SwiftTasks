@@ -13,6 +13,7 @@ public class Task {
     private Calendar dueDate;
     private int timeNeeded;
     private boolean isCompleted;
+    private boolean isAlternating;
     private boolean taskChanged;
 
     private long remainingTimeMillis;
@@ -83,6 +84,9 @@ public class Task {
 
     public boolean isCompleted() { return isCompleted; }
     public void setCompleted(boolean isCompleted) { this.isCompleted = isCompleted; }
+
+    public boolean isAlternating() { return isAlternating; }
+    public void setAlternating(boolean isAlternating) { this.isAlternating = isAlternating; }
 
     public void setTaskChanged(boolean taskChanged) {
         this.taskChanged = taskChanged;

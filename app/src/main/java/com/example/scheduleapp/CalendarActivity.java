@@ -45,25 +45,33 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void loadTasks() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
         for (Task task : mTasks) {
-            Calendar startDate = task.getStartDate();
+            Calendar tempDate = (Calendar) task.getStartDate().clone();
             Calendar dueDate = task.getDueDate();
-            Calendar tempDate = (Calendar) startDate.clone();
+
+            int dayAdd;
+            if (task.isAlternating()) {
+                dayAdd = 2;
+            } else {
+                dayAdd = 1;
+            }
 
             while (!tempDate.after(dueDate)) {
                 String date = sdf.format(tempDate.getTime());
-                ArrayList<String> tasksForDay = new ArrayList<>();
-                tasksForDay.add(task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " minutes");
+                String taskInfo = task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " minutes";
 
                 int index = dateList.indexOf(date);
                 if (index != -1) {
-                    taskLists.get(index).addAll(tasksForDay);
+                    taskLists.get(index).add(taskInfo);
                 } else {
+                    ArrayList<String> newList = new ArrayList<>();
+                    newList.add(taskInfo);
                     dateList.add(date);
-                    taskLists.add(tasksForDay);
+                    taskLists.add(newList);
                 }
 
-                tempDate.add(Calendar.DAY_OF_MONTH, 1);
+                tempDate.add(Calendar.DAY_OF_MONTH, dayAdd);
             }
         }
     }
