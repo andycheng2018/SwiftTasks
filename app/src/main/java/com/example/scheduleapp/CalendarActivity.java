@@ -50,6 +50,16 @@ public class CalendarActivity extends AppCompatActivity {
             Calendar tempDate = (Calendar) task.getStartDate().clone();
             Calendar dueDate = task.getDueDate();
 
+            tempDate.set(Calendar.HOUR_OF_DAY, 0);
+            tempDate.set(Calendar.MINUTE, 0);
+            tempDate.set(Calendar.SECOND, 0);
+            tempDate.set(Calendar.MILLISECOND, 0);
+
+            dueDate.set(Calendar.HOUR_OF_DAY, 0);
+            dueDate.set(Calendar.MINUTE, 0);
+            dueDate.set(Calendar.SECOND, 0);
+            dueDate.set(Calendar.MILLISECOND, 0);
+
             int dayAdd;
             if (task.isAlternating()) {
                 dayAdd = 2;
