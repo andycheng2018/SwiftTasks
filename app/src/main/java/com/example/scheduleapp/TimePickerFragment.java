@@ -41,8 +41,8 @@ public class TimePickerFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Calendar time = (Calendar) getArguments().getSerializable(ARG_TIME);
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = (Calendar) getArguments().getSerializable(ARG_TIME);
+        //Calendar calendar = Calendar.getInstance();
 
         View v = LayoutInflater.from(requireActivity()).inflate(R.layout.dialogue_time_picker, null);
         mTimePicker = v.findViewById(R.id.dialog_time_picker);
@@ -60,8 +60,10 @@ public class TimePickerFragment extends DialogFragment {
                         calendar.set(Calendar.HOUR_OF_DAY, hour);
                         calendar.set(Calendar.MINUTE, minute);
 
+
                         Bundle result = new Bundle();
                         result.putSerializable(RESULT_TIME_KEY, calendar);
+
                         String resultRequestCode = requireArguments().getString(ARG_REQUEST_CODE, "");
                         requireActivity().getSupportFragmentManager().setFragmentResult(resultRequestCode, result);
                     }

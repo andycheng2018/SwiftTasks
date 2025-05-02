@@ -61,18 +61,29 @@ public class CalendarActivity extends AppCompatActivity {
                 String date = sdf.format(tempDate.getTime());
                 String taskInfo = task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " minutes";
 
-                int index = dateList.indexOf(date);
-                if (index != -1) {
-                    taskLists.get(index).add(taskInfo);
-                } else {
-                    ArrayList<String> newList = new ArrayList<>();
-                    newList.add(taskInfo);
-                    dateList.add(date);
-                    taskLists.add(newList);
+                if (tempDate.equals(dueDate)) {
+                    break;
                 }
 
+                addTaskToDate(date, taskInfo);
                 tempDate.add(Calendar.DAY_OF_MONTH, dayAdd);
             }
+
+            String dueDateString = sdf.format(dueDate.getTime());
+            String finalTaskInfo = task.getAssignmentName() + " - Study for " + task.getTimeNeeded() + " minutes" + " (Final due date)";
+            addTaskToDate(dueDateString, finalTaskInfo);
+        }
+    }
+
+    private void addTaskToDate(String date, String taskInfo) {
+        int index = dateList.indexOf(date);
+        if (index != -1) {
+            taskLists.get(index).add(taskInfo);
+        } else {
+            ArrayList<String> newList = new ArrayList<>();
+            newList.add(taskInfo);
+            dateList.add(date);
+            taskLists.add(newList);
         }
     }
 

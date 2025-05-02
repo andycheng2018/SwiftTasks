@@ -77,6 +77,7 @@ public class Task {
         this.dueDate.set(Calendar.MINUTE, dueDate.get(Calendar.MINUTE));
         this.dueDate.set(Calendar.SECOND, dueDate.get(Calendar.SECOND));
         this.dueDate.set(Calendar.MILLISECOND, dueDate.get(Calendar.MILLISECOND));
+        this.dueDate.set(Calendar.AM_PM, dueDate.get(Calendar.AM_PM));
     }
 
     public int getTimeNeeded() { return timeNeeded; }
