@@ -18,8 +18,6 @@ Swift Tasks is a user-friendly scheduling app designed to help you stay on top o
 
 ## Demo Video
 
-Watch the demo video to get a sense of how Swift Tasks works and its key features:
-
 [![Watch the demo](https://img.youtube.com/vi/D27bZh9T6iA/0.jpg)](https://www.youtube.com/shorts/D27bZh9T6iA)
 
 ---
@@ -61,4 +59,3 @@ Watch the demo video to get a sense of how Swift Tasks works and its key feature
    - Mark tasks as complete when finished, or delete tasks you no longer need.
 
 ---
-
