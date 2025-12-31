@@ -18,21 +18,21 @@ Swift Tasks is a user-friendly scheduling app designed to help you stay on top o
 
 ## Demo Video
 
-<div style="max-width: 900px; margin: 20px auto;">
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid #808080;">
+<div style="max-width: 400px; margin: 20px auto;">
+  <div style="position: relative; padding-bottom: 177.78%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid #808080; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
     <iframe
       src="https://www.youtube.com/embed/D27bZh9T6iA"
       title="Swift Tasks Demo Video"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
       frameborder="0"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
     </iframe>
   </div>
 </div>
 
 ---
+
 
 ## Screenshots
 
